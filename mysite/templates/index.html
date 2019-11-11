@@ -1,53 +1,63 @@
-
 <!DOCTYPE html>
 <html lang="">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Trang Chủ</title>
 
-        <!-- Bootstrap CSS -->
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Trang Chủ</title>
 
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.3/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
-    </head>
-    <body>
-        <div class="container">
-                <h1 class="text-center">Hello World</h1>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-center">Hello World</h1>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Question text</th>
+                    <th>Date published</th>
+                </tr>
+
+
+
+            </thead>
+            <tbody>
+
+                {% for a in data %}
+                <tr>
+                    <td>{{ a.question_text }}</td>
+                    <td>{{ a.pub_date }}</td>
+                </tr>
+                {% endfor %}
+
+
+            </tbody>
+        </table>
+        {% for b in dataChoice  %}
+        <h4>{{b.choice_text}}</h4>
         
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>Question text</th>
-                            <th>Date published</th>
-                        </tr>
-                      
-                          
-                       
-                    </thead>
-                    <tbody>
-                        
-                        {% for a in data %}
-                        <tr>
-                                <td>{{ a.question_text }}</td>
-                                <td>{{ a.pub_date }}</td>
-                        </tr>
-                        {% endfor %}
-                            
-                       
-                    </tbody>
-                </table>
-        </div>
-        
-        <!-- jQuery -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <!-- Bootstrap JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    </body>
+        {% for c in b.questions.all %}
+            <h4>{{c.question_text}}</h4>
+        {% endfor %}
+            
+        {% endfor %}
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+
 </html>
