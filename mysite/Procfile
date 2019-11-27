@@ -1,1 +1,1 @@
-web: gunicorn myproject.wsgi
+web: sh -c 'cd mysite && gunicorn mysite.wsgi --log-file -'
