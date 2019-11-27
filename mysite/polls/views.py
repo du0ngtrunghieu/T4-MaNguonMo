@@ -3,6 +3,7 @@ from django.views.generic import DetailView,ListView
 from .models import Question,Choice
 from .forms import QuestionForm,ChoiceForm
 from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 class HomeDetailView(ListView):
@@ -15,6 +16,7 @@ class HomeDetailView(ListView):
         context['dataChoice'] = test
         context['data'] = data
         return context
+@login_required(login_url='/users/login/')
 def questions(request):
     """Show all questions"""
     # Query the database for all questions
@@ -40,7 +42,7 @@ def questions(request):
     context = {'form': formQuestion,'questions' : questions,'formChoice':formChoice}
     
     return render(request, 'polls/questions.html', context)
-
+@login_required(login_url='/users/login/')
 def addChoice(request,question_id):
     if question_id is not None:
         if request.method == 'POST':
